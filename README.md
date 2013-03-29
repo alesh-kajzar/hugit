@@ -37,10 +37,17 @@ During the work you want to see changes, that made others. Type:
 ./hugit.sh get-lastest-version
 ```
 
-In most cases it's done. Remember, now you have other's changes, but your changes are not saved in shared directory.
-Sometimes you can edit the same line of code as your workmate - and you have to decide, which version is corret.
+In most cases it's done, but sometimes you can edit the same line of code as your workmate - and you have to decide, which version is corret. This situation is called **conflict** and you have to [resolve it](#resolving-a-conflict).
 
-If this happens, you will receive error message like this:
+After [resolving all conflicts](#resolving-a-conflict) use this command:
+```
+./hugit.sh get-lastest-version --continue
+```
+
+Remember, now you have other's changes, but your changes are not saved in shared directory.
+
+### Resolving a conflict
+If during `check-in` or `get-lastest-version` was a conflict, you will receive error message like this:
 ```
 # You have to resolve conflict in these files:
 file1
@@ -52,7 +59,7 @@ file3
 # If you beleive, that this is an error and file is resolved, use command 'resolved FILE'.
 ```
 
-Now you have to resolve all the conflicts. Open each file (file1, file2, file3) and edit the code. For example, you have to replace this:
+Now you have to resolve all the conflicts. Open each file (file1, file2, file3) and repair it. For example, you have to replace this:
 
 ```
 <<<<<<< HEAD
@@ -67,18 +74,13 @@ By this:
 printf("This is code, that you want.");
 ```
 
-After resolving all conflicts use this command:
-```
-./hugit.sh get-lastest-version --continue
-```
-
 ### Sending your changes to shared directory
 When you're satisfied with your work and you want to share your changes, type:
 ```
 ./hugit.sh check-in "Fixed some bugs."
 ```
 
-If there is a conflict, resolve it (that is described [above](https://github.com/alesh-kajzar/hugit/edit/master/README.md#getting-changes-of-your-workmates)) and type:
+If there is a conflict, [resolve it](#resolving-a-conflict)) and type:
 ```
 ./hugit.sh check-in --continue
 ```
