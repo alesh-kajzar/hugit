@@ -1,0 +1,4 @@
+hugit
+=====
+
+Git for humans.
