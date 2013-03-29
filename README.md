@@ -2,6 +2,10 @@ hugit
 =====
 Script for using of git really easy. You can use much less commands to manage your shared directory than with GIT.
 
+The princip is pretty simple. One directory - *shared directory* - contains developed project. Everyone, who works on this project, has its own clone in *local directory*, where he can make his changes. 
+
+When a new feature is done, use [check-in](#sending-your-changes-to-shared-directory) and the changes will be saved in *shared directory*.
+
 ## Commands
 * **h, --help** prints help.
 * **check-in MESSAGE** saves data to the shared repository. MESSAGE is required parameter - it's a short comment, what did you change.
@@ -24,7 +28,7 @@ Just type inside folder, that you want to share:
 And it's done. Inside this folder will be current version of whole project.
 
 ### Creating local version
-Only one command will clone the repository to your local directory`:
+Only one command will clone the repository to your local directory:
 
 ```
 ./hugit.sh clone alesh@server.example.com/mnt/data/folder/shared_repository ./my_local_dir
@@ -45,6 +49,18 @@ After [resolving all conflicts](#resolving-a-conflict) use this command:
 ```
 
 Remember, now you have other's changes, but your changes are not saved in shared directory.
+
+
+### Sending your changes to shared directory
+When you're satisfied with your work and you want to share your changes, type:
+```
+./hugit.sh check-in "Fixed some bugs."
+```
+
+If there is a conflict, [resolve it](#resolving-a-conflict)) and type:
+```
+./hugit.sh check-in --continue
+```
 
 ### Resolving a conflict
 If during `check-in` or `get-lastest-version` was a conflict, you will receive error message like this:
@@ -72,16 +88,5 @@ printf("This is code, that is now in the shared repository.");
 By this:
 ```
 printf("This is code, that you want.");
-```
-
-### Sending your changes to shared directory
-When you're satisfied with your work and you want to share your changes, type:
-```
-./hugit.sh check-in "Fixed some bugs."
-```
-
-If there is a conflict, [resolve it](#resolving-a-conflict)) and type:
-```
-./hugit.sh check-in --continue
 ```
 
