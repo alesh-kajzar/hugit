@@ -1,9 +1,9 @@
 # hugit: GIT FOR HUMANS
 # Author: Alesh Kajzar
 
-# remove a resolved file from hugit
+# remove a resolved file from 'hugit'
 function resolved(){
-  resolved_file=`cat hugit | egrep --invert-match "^${1}$"`
+	resolved_file=`cat hugit | egrep --invert-match "^${1}$"`
 	echo "$resolved_file" > hugit
 }
 
@@ -35,7 +35,6 @@ function check_resolved(){
 	fi
 }
 
-# check-in
 # Sends data to shared git
 # @param $1 message
 function check_in(){
@@ -53,7 +52,7 @@ function check_in(){
 	fi 
 }
 
-# check-in-continue
+# Continues with uploading files to the shared directory.
 function check_in_continue(){
 	get_lastest_version_continue
 	git checkout master > /dev/null 2> /dev/null
@@ -62,7 +61,7 @@ function check_in_continue(){
 	git checkout devel > /dev/null 2> /dev/null
 }
 
-	# get-lastest-version
+# Gets lastest version from shared directory.
 function get_lastest_version(){
 	git add -A > /dev/null 2> /dev/null
 	git commit -a -m "saved work" > /dev/null 2> /dev/null
@@ -81,16 +80,17 @@ function get_lastest_version(){
 	fi
 }
 
-# get-lastest-version-continue
+# Continues with getting filesfrom the shared directory.
 function get_lastest_version_continue(){
 	git add . > /dev/null 2> /dev/null
 	git rebase --continue > /dev/null 2> /dev/null
 }
 
+# Initials new shared directory
 function init_shared(){
 	git init  > /dev/null 2> /dev/null
 	if [ "$(ls -A .)" ]; then
-	echo "">/dev/null
+		echo "">/dev/null
 	else
 		write_help > README_HUGIT;
 	fi
@@ -100,12 +100,14 @@ function init_shared(){
 	echo "Git initialized."
 }
 
+# Creates a clone of the shared directory
 function clone(){
 	git clone "$1/" "$2/" > /dev/null 2> /dev/null
 	cd "$2/" > /dev/null 2> /dev/null
 	git checkout -b devel > /dev/null 2> /dev/null
 }
 
+# Writes help message
 function write_help(){
 	echo -e "hugit: GIT FOR HUMANS"
 	echo -e "--------------------"
@@ -123,8 +125,7 @@ function write_help(){
 
 }
 
-# parameters
-
+# Process parameters
 if [ "$1" == "get-lastest-version" ] && [ "$2" == "--continue" ]; then
 	check_resolved
 	ret=$?
