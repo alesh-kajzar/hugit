@@ -93,7 +93,7 @@ printf("This is code, that you want.");
 ## Features in progress - not implemented yet
 
 * **log** Show all changes.
-* **view-pending-changes** Shows files, thad you changed and you didn't save them to shared directory.
+* **view-pending-changes** Shows files, that you've changed and you didn't save them to shared directory.
 * **undo-pending-changes [FILE1] [FILE2] ...** Undos changes in specified files in local directory.
 * **get-version VERSION** Reverts changes until VERSION.
 * **shelve-pending-chages** Saves progress in your local directory.
